@@ -141,7 +141,7 @@ export default class Helpers {
 
     elements.forEach(el => {
       events.split(' ').forEach(event => {
-        el[`${event}_${callback.name}`] = false
+        el[`${event}_${callback.name}`] = true
         _addListener(el, event, callback)
       })
     })
@@ -151,7 +151,7 @@ export default class Helpers {
     let elements = findAll(query)
     if (elements.length == 0) return
 
-    elements.forEach(el => el[`${event}_${callback.name}`] = true)
+    elements.forEach(el => el[`${event}_${callback.name}`] = false)
   }
 
   currentElement() {
@@ -164,7 +164,7 @@ export default class Helpers {
 
   _addListener(elem, event, callback) {
     elem.addEventListener(event, function handle(e) {
-      if (elem[`${event}_${callback.name}`]) {
+      if (!elem[`${event}_${callback.name}`]) {
         elem.removeEventListener(event, handle)
         return
       }
