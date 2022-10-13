@@ -147,7 +147,7 @@ export default class Helpers {
     })
   }
 
-  removeListener(query, event, callback) {
+  off(query, event, callback) {
     let elements = findAll(query)
     if (elements.length == 0) return
 
